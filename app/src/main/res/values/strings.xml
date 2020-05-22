@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">MonoPay Prototype</string>
+    <string name="actionbar_title">MonoPay</string>
+
+    <string name="payment_label_card_number">Номер картки</string>
+    <string name="payment_label_expiry_date">Термін дії</string>
+    <string name="payment_hint_number">XXXX XXXX XXXX XXXX</string>
+    <string name="payment_hint_mm">ММ</string>
+    <string name="payment_hint_yy">РР</string>
+    <string name="payment_hint_cvv">XXX</string>
+    <string name="payment_label_cvv">CVV2/CVC2</string>
+    <string name="payment_err_invalid_card_number">Невірний номер карти</string>
+    <string name="payment_err_invalid_cvv">Невірний CVV</string>
+    <string name="payment_err_invalid_date">Невірна дата</string>
+    <string name="payment_err_invalid_mm">Недійсний місяць</string>
+    <string name="payment_err_invalid_yy">Недійсний рік</string>
+    <string name="payment_button">Підтвердити</string>
+    <string name="payment_label_transfer_amount">Сума переказу</string>
+    <string name="payment_transfer_amount">до 25000 грн з комісією</string>
+    <string name="payment_err_invalid_transfer_amount">некоректне значення</string>
+    <string name="phone_mask_it">380(94)___-__-__</string>
+    <string name="phone_mask_ua">380(__)___-__-__</string>
+    <string name="processing_request">опрацювання запиту…</string>
+    <string name="operation_completed_successfully">операція виконана успішно</string>
+    <string name="sender_number">Номер відправника</string>
+    <string name="recipient_number">Номер одержувача</string>
+    <string name="transfer_amount">Сума переказу</string>
+    <string name="to_pay">Сплатити</string>
+    <string name="err_incorrect_value">неправильне значення</string>
+    <string name="total_label">Разом:</string>
+    <string name="commission_label">Комiсiя:</string>
+    <string name="sender_name">ПІБ платника</string>
+    <string name="sender_phone">Телефон платника</string>
+    <string name="recipient_name">Одержувач</string>
+    <string name="recipient_code">Код отримувача, ЄДРПОУ або ІПН</string>
+    <string name="recipient_iban">IBAN</string>
+    <string name="recipient_bank">Назва банку одержувача</string>
+    <string name="payment_purpose">Призначення платежу</string>
+    <string name="payment_amount">Сума</string>
+    <string name="btn_visa_mastercard">Visa / MasterCard</string>
+    <string name="btn_intertelecom">Intertelecom</string>
+    <string name="identifier">Ідентифікатор</string>
+    <string name="faq_title">Часті питання</string>
+    <string name="faq_description">підбірка часто задаваних питань</string>
+    <string name="action_search">Пошук</string>
+    <string name="action_registration">Реєстрація</string>
+    <string name="action_login">Вхід</string>
+
+    <string name="title_register">Реєстрація в системі</string>
+    <string name="msg_register_password"><![CDATA[Пароль повинен містити не менш ніж 9 символів, повинен містити цифри, букви у верхньому і нижньому регістрі, спецсимволи: !,@,#,$,%,^,&,*,?,_,~,-,£,(,)]]></string>
+    <string name="registration_hint_email">Адреса електронної пошти</string>
+    <string name="registration_hint_phone">Телефон</string>
+    <string name="registration_helper_phone">використовується в якості логіна</string>
+    <string name="registration_hint_password">Пароль</string>
+    <string name="registration_hint_password_confirm">Підтвердження пароля</string>
+    <string name="btn_register">Зареєструватися</string>
+    <string name="err_password_mismatch">Паролі не співпадають</string>
+
+    <string name="btn_back">Назад</string>
+    <string name="verification_payment_data">Перевірка даних платежу</string>
+
+</resources>

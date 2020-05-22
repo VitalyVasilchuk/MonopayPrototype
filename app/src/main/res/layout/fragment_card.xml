@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="apps.basilisk.monopayprototype.ui.fragment.card.CardViewModel" />
+
+        <variable
+            name="service"
+            type="apps.basilisk.monopayprototype.model.entity.ServiceItem" />
+
+        <import type="android.view.View" />
+
+        <import type="java.util.Locale" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bgCard">
+
+                <ImageView
+                    android:id="@+id/iv_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_close" />
+
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    imageResId="@{service.imageResId}"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_service_dummy"
+                    tools:srcCompat="@drawable/ic_service_dummy" />
+
+                <TextView
+                    android:id="@+id/tv_header_title"
+                    style="@style/text_title_select"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/raleway"
+                    android:text="@{service.title}"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_description"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_close"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Service title" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    style="@style/text_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@{service.description}"
+                    android:textStyle=""
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                    tools:text="service description" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_message"
+                    style="@style/text_dummy_message"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{model.message}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="message" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_sender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_message">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_card_number"
+                            style="@style/card_text_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/payment_label_card_number"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/et_card_number"
+                            style="@style/card_text_field"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:digits=" 1234567890"
+                            android:hint="@string/payment_hint_number"
+                            android:inputType="number"
+                            android:maxLength="22"
+                            android:text="@={model.cardNumber}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_number" />
+
+                        <TextView
+                            android:id="@+id/tv_err_card_number"
+                            style="@style/card_text_error"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/payment_err_invalid_card_number"
+                            android:visibility="@{model.errorCardNumber? View.VISIBLE : View.GONE}"
+                            app:layout_constraintEnd_toEndOf="@+id/et_card_number"
+                            app:layout_constraintStart_toStartOf="@+id/et_card_number"
+                            app:layout_constraintTop_toBottomOf="@+id/et_card_number" />
+
+                        <TextView
+                            android:id="@+id/tv_card_expiry_date"
+                            style="@style/card_text_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/payment_label_expiry_date"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_card_cvv"
+                            app:layout_constraintHorizontal_weight="0.7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_err_card_number" />
+
+                        <TextView
+                            android:id="@+id/tv_card_cvv"
+                            style="@style/card_text_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/payment_label_cvv"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_weight="0.3"
+                            app:layout_constraintStart_toEndOf="@+id/tv_card_expiry_date"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_err_card_number" />
+
+                        <EditText
+                            android:id="@+id/et_card_cvv"
+                            style="@style/card_text_field"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="@string/payment_hint_cvv"
+                            android:inputType="number|numberPassword"
+                            android:maxLength="@{model.cvvLength}"
+                            android:text="@={model.cardCvv}"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_card_cvv"
+                            app:layout_constraintStart_toStartOf="@+id/tv_card_cvv"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_cvv" />
+
+                        <TextView
+                            android:id="@+id/tv_err_card_cvv"
+                            style="@style/card_text_error"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center"
+                            android:text="@string/payment_err_invalid_cvv"
+                            android:visibility="@{model.errorCardCvv? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/et_card_cvv"
+                            app:layout_constraintStart_toStartOf="@+id/et_card_cvv"
+                            app:layout_constraintTop_toBottomOf="@+id/et_card_cvv" />
+
+                        <EditText
+                            android:id="@+id/et_card_mm"
+                            style="@style/card_text_field"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="@string/payment_hint_mm"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:text="@={model.cardMm}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/et_card_yy"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="@+id/tv_card_expiry_date"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_expiry_date"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <EditText
+                            android:id="@+id/et_card_yy"
+                            style="@style/card_text_field"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="@string/payment_hint_yy"
+                            android:inputType="numberSigned"
+                            android:maxLength="2"
+                            android:text="@={model.cardYY}"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_card_expiry_date"
+                            app:layout_constraintEnd_toStartOf="@+id/et_card_cvv"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/et_card_mm"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_expiry_date" />
+
+                        <TextView
+                            android:id="@+id/tv_err_card_mm"
+                            style="@style/card_text_error"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center"
+                            android:text="@string/payment_err_invalid_mm"
+                            android:visibility="@{model.errorCardMm? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/et_card_mm"
+                            app:layout_constraintStart_toStartOf="@+id/et_card_mm"
+                            app:layout_constraintTop_toBottomOf="@+id/et_card_mm" />
+
+                        <TextView
+                            android:id="@+id/tv_err_card_yy"
+                            style="@style/card_text_error"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center"
+                            android:text="@string/payment_err_invalid_yy"
+                            android:visibility="@{model.errorCardYY? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/et_card_yy"
+                            app:layout_constraintStart_toEndOf="@+id/et_card_mm"
+                            app:layout_constraintTop_toBottomOf="@+id/et_card_yy" />
+
+                        <ImageView
+                            android:id="@+id/iv_card_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="12dp"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/et_card_number"
+                            app:layout_constraintEnd_toEndOf="@+id/et_card_number"
+                            app:srcCompat="@drawable/ic_card_payment_visa" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_recipient"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_sender">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_card_number_recipient"
+                            style="@style/card_text_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/payment_label_card_number"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/et_card_number_recipient"
+                            style="@style/card_text_field"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:digits=" 1234567890"
+                            android:hint="@string/payment_hint_number"
+                            android:inputType="number"
+                            android:maxLength="22"
+                            android:text="@={model.cardNumberRecipient}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_card_number_recipient"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <TextView
+                            android:id="@+id/tv_err_card_number_recipient"
+                            style="@style/card_text_error"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/payment_err_invalid_card_number"
+                            android:visibility="@{model.errorCardNumberRecipient? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/et_card_number_recipient"
+                            app:layout_constraintStart_toStartOf="@+id/et_card_number_recipient"
+                            app:layout_constraintTop_toBottomOf="@+id/et_card_number_recipient" />
+
+                        <ImageView
+                            android:id="@+id/iv_card_icon_recipient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="12dp"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/et_card_number_recipient"
+                            app:layout_constraintEnd_toEndOf="@+id/et_card_number_recipient"
+                            app:srcCompat="@drawable/ic_card_payment_visa" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_transfer_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_recipient">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_transfer_amount"
+                            style="@style/card_text_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/payment_label_transfer_amount"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/et_transfer_amount"
+                            style="@style/card_text_field"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:hint="@string/payment_transfer_amount"
+                            android:inputType="numberDecimal"
+                            android:text="@={model.amount}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_transfer_amount"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <TextView
+                            android:id="@+id/tv_err_transfer_amount"
+                            style="@style/card_text_error"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/payment_err_invalid_transfer_amount"
+                            android:visibility="@{model.errorAmount? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/et_transfer_amount"
+                            app:layout_constraintStart_toStartOf="@+id/et_transfer_amount"
+                            app:layout_constraintTop_toBottomOf="@+id/et_transfer_amount" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <Button
+                    android:id="@+id/btn_payment_card"
+                    style="@style/ButtonColored"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:onClick="@{v -> model.clickButtonPaymentCard(context)}"
+                    android:text="@string/payment_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_value" />
+
+                <TextView
+                    android:id="@+id/tv_commission"
+                    style="@style/text_dummy_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/commission_label"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_transfer_amount" />
+
+                <TextView
+                    android:id="@+id/tv_commission_value"
+                    style="@style/text_dummy_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{String.format(Locale.ROOT, `%.2f грн.`, model.commission)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_transfer_amount"
+                    tools:text="15.00" />
+
+                <TextView
+                    android:id="@+id/tv_total_label"
+                    style="@style/text_dummy_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_label"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_commission" />
+
+                <TextView
+                    android:id="@+id/tv_total_value"
+                    style="@style/text_dummy_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{String.format(Locale.ROOT, `%.2f грн.`, model.total)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_commission_value"
+                    tools:text="1015.00" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintGuide_percent="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/bgProcessTransparent"
+            android:visibility="@{model.stateLoading? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_header"
+            tools:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_loading"
+                style="@style/text_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/processing_request"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

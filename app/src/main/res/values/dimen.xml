@@ -1,0 +1,12 @@
+<resources>
+    <dimen name="single_space">16dp</dimen>
+    <dimen name="double_space">16dp</dimen>
+
+    <dimen name="item_row_height">64dp</dimen>
+
+    <dimen name="text_size_smaller">8dp</dimen>
+    <dimen name="text_size_small">12dp</dimen>
+    <dimen name="text_size_normal">14dp</dimen>
+    <dimen name="text_size_medium">16dp</dimen>
+    <dimen name="text_size_big">18dp</dimen>
+</resources>

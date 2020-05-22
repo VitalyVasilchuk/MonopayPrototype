@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F0B4E</color>
+    <color name="colorPrimaryDark">#2D1638</color>
+    <color name="colorAccent">#2CA5DD</color>
+
+    <color name="secondaryText">#a7a7a7</color>
+    <color name="textDark">#212121</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="bgCard">#2D1638</color>
+    <color name="bgCardTransparent">#402D1638</color>
+    <color name="bgProcessTransparent">#E62D1638</color>
+    <color name="bgLayout">#4C3956</color>
+
+    <color name="color_divider">#4C3956</color>
+
+    <color name="color_bar_start">#74735F</color>
+    <color name="color_bar_center">#9C9A73</color>
+    <color name="color_bar_end">#B0A377</color>
+
+    <color name="color_yellow">#fff2a9</color>
+
+    <color name="color_error_text">#F44336</color>
+    <color name="color_error_bg">#1AF44336</color>
+
+    <color name="btn_bg_enable">#2CA5DD</color>
+    <color name="btn_bg_pressed">#248EBF</color>
+    <color name="btn_bg_disable">#84c1db</color>
+    <color name="btn_text">#FFFFFF</color>
+
+</resources>
